@@ -3,8 +3,9 @@
 An adaptation of the famous party game "Les Loups-garous de Thiercelieux" as a multiplayer networked game.
 
 ## ✨ **Features**
+
 - **Multiplayer gameplay** over a network.
-- **Roles** include Simple villager, werewolf, seer, witch, hunter, thief, little girl, cupid, sheriff and more to come.
+- **Roles** include simple villager, werewolf, seer, witch, hunter, thief, little girl, cupid, sheriff and more to come.
 - **Day and night cycles** with voting and special abilities.
 - **Modular role system**: easily add new roles to the game.
 
@@ -43,9 +44,10 @@ An adaptation of the famous party game "Les Loups-garous de Thiercelieux" as a m
 
 5. The game continues until either the Werewolves or Villagers win.
 
-# 🛠️ **Adding new roles**
+## 🛠️ **Adding new roles**
 
 To add a new role:
+
 1. Create a new file in the ``roles/`` directory.
 
 2. Define the role by inheriting from ``baseRole``.
@@ -54,9 +56,11 @@ To add a new role:
 
 4. Add the role to the ``ROLES`` list in ``config.py``.
 
-# 🚀 **Future Plans**
-* Implement a web-based interface for better accessibility.
-* Add more roles and custom game modes.
+## 🚀 **Future plans**
 
-# 📜 **License**
+- Implement a web-based interface for better accessibility.
+
+- Add more roles and custom game modes.
+
+## 📜 **License**
 This project is licensed under the MIT License. See ``LICENSE`` for details.
