@@ -1,8 +1,5 @@
 # Configuration file for the application
 
-# Number of players in the game
-NB_PLAYERS = 10
-
 # Roles repartition
 ROLES = {
     "villagers": 2,
@@ -13,3 +10,6 @@ ROLES = {
     "cupid": 1,
     "thief": 1,
 }
+
+# Number of players
+NB_PLAYERS = sum(ROLES.values())
