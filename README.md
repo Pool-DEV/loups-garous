@@ -1,4 +1,4 @@
-# 🐺 **Loups-garou de Thiercelieux**
+# 🐺 **Loups-garous de Thiercelieux**
 
 An adaptation of the famous party game "Les Loups-garous de Thiercelieux" as a multiplayer networked game.
 
@@ -14,12 +14,12 @@ An adaptation of the famous party game "Les Loups-garous de Thiercelieux" as a m
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Pool-DEV/loups-garou.git
+   git clone https://github.com/Pool-DEV/loups-garous.git
    ```
 2. Navigate to the project directory:
 
    ```bash
-   cd loups-garou
+   cd loups-garous
    ```
 3. Run the game server:
 
