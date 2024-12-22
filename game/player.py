@@ -10,6 +10,7 @@ class Player:
         self.alive = True
         self.votes = 0
         self.is_sheriff = False
+        self.is_in_love = False
 
     def assign_role(self, role):
         """
