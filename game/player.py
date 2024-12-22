@@ -27,8 +27,8 @@ class Player:
             raise Exception(f"{self.name} is dead and cannot vote.")
         
         if not target_player.alive:
-
             raise Exception(f"{target_player.name} is dead and cannot be voted for.")
+        
         target_player.votes += 1
 
     def reset_votes(self):
