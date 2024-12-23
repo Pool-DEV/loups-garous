@@ -2,13 +2,13 @@
 
 # Roles repartition
 ROLES = {
-    "villagers": 2,
-    "werewolves": 3,
-    "seer": 1,
-    "witch": 1,
-    "hunter": 1,
-    "cupid": 1,
-    "thief": 1,
+    "Simple Villageois": 2,
+    "Loup-Garou": 3,
+    "Voyante": 1,
+    "Sorcière": 1,
+    "Chasseur": 1,
+    "Cupidon": 1,
+    "Voleur": 1,
 }
 
 # Number of players
