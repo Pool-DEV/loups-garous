@@ -2,7 +2,7 @@ from game import *
 from roles import *
 from config import *
 
-names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy", "John"]
+names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy", "John", "Kate"]
 
 players = [Player(i, names[i]) for i in range(len(names))]
 
