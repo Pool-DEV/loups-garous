@@ -19,18 +19,15 @@ class Player:
 
         self.role = role
 
-    def vote(self, target_player):
+    def vote(self):
         """
-        Votes for a player.
+        Votes for the player.
         """
 
         if not self.alive:
-            raise Exception(f"{self.name} is dead and cannot vote.")
+            raise Exception(f"{self.name} est mort, vous ne pouvez pas voter pour lui.")
         
-        if not target_player.alive:
-            raise Exception(f"{target_player.name} is dead and cannot be voted for.")
-        
-        target_player.votes += 1
+        self.votes += 1
 
     def reset_votes(self):
         """
@@ -45,6 +42,27 @@ class Player:
         """
 
         self.alive = False
+
+    def elect_sheriff(self):
+        """
+        Elects the player as sheriff.
+        """
+
+        self.is_sheriff = True
+
+    def unelect_sheriff(self):
+        """
+        Dismisses the player as sheriff.
+        """
+
+        self.is_sheriff = False
+    
+    def fall_in_love(self):
+        """
+        Makes the player fall in love.
+        """
+
+        self.is_in_love = True
 
     def __str__(self):
         """
