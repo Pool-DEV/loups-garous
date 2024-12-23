@@ -44,8 +44,11 @@ class GameManager:
         
         if len(self.players) != NB_PLAYERS:
             raise Exception(f"Le nombre de joueurs doit être de {NB_PLAYERS} pour commencer la partie.")
-        
-        roles = list(ROLES.keys())
-        random.shuffle(roles)
-
-        print(roles)
+        roles_to_assign = []
+        for role, count in ROLES.items():
+            roles_to_assign.extend([role] * count)
+        random.shuffle(roles_to_assign)
+        for player in self.players:
+            role = roles_to_assign.pop()
+            player.assign_role(role)
+            self.logs.append(f"{player.name} est {role}.")
