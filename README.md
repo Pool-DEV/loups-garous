@@ -50,8 +50,10 @@ To add a new role:
 
 ## 🚀 **Future plans**
 
+* Allow users to create custom games with personalized card distributions and a custom number of players.
+* Implement support for multiple languages to make the game accessible to players worldwide.
+* Introduce new roles and variations to enrich gameplay.
 * Implement a web-based interface for better accessibility.
-* Add more roles and custom game modes.
 
 ## 📜 **License**
 
