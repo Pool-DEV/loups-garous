@@ -13,10 +13,15 @@ game = GameManager(roles)
 for player in players:
     game.add_player(player)
 
-game.assign_roles()
+game.start_game()
 
 for player in game.players:
-    if isinstance(player.role, Werewolf):
+    if player.role.team == "wolf":
         print(f"\033[91m{player.name} est {player.role.name}\033[0m")
     else:
         print(f"{player.name} est {player.role.name}")
+
+if game.check_game_is_over():
+    print("La partie est terminée.")
+else:
+    print("La partie continue.")

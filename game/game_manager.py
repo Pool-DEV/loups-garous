@@ -8,7 +8,6 @@ class GameManager:
 
         self.players = []
         self.roles = roles
-        self.alive_players = []
         self.phase = "setup"  
         self.current_round = 0
 
@@ -29,7 +28,7 @@ class GameManager:
 
         if self.phase != "setup":
             raise Exception("Les joueurs ne peuvent être retirés qu'avant le début de la partie.")
-        
+
         self.players.remove(player)
 
     def assign_roles(self):
@@ -47,3 +46,36 @@ class GameManager:
 
         for player in self.players:
             player.assign_role(self.roles.pop())
+
+    def start_game(self):
+        """
+        Start the game.
+        """
+
+        if self.phase != "setup":
+            raise Exception("La partie a déjà commencé.")
+        
+        self.assign_roles()
+        self.phase = "night"
+        self.current_round = 1
+
+    def check_game_is_over(self):
+        """
+        Check if the game is over.
+        """
+
+        wolves = 0
+        villagers = 0
+
+        for player in self.players:
+            if villagers > 0 and wolves > 0:
+                return False
+            elif player.role.team == "wolf" and player.alive:
+                wolves += 1
+            elif player.role.team == "vil" and player.alive:
+                villagers += 1
+        
+        if wolves == 0 or villagers == 0:
+            return True
+        else:
+            return False
