@@ -40,6 +40,9 @@ class GameManager:
         if self.phase != "setup":
             raise Exception("Les rôles ne peuvent être assignés qu'avant le début de la partie.")
         
+        if len(self.players) != len(self.roles):
+            raise Exception("Le nombre de joueurs et le nombre de rôles ne correspondent pas.")
+        
         random.shuffle(self.roles)
 
         for player in self.players:
