@@ -1,8 +1,7 @@
 from roles import *
 
-# Configuration file for the application
+# Repartition of roles in the default game
 
-# Roles repartition
 ROLES = {
     SimpleVillager(): 2,
     Werewolf(): 3,
@@ -12,6 +11,3 @@ ROLES = {
     Cupid(): 1,
     Thief(): 1,
 }
-
-# Number of players
-NB_PLAYERS = sum(ROLES.values())
