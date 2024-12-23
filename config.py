@@ -1,14 +1,16 @@
+from roles import *
+
 # Configuration file for the application
 
 # Roles repartition
 ROLES = {
-    "Simple Villageois": 2,
-    "Loup-Garou": 3,
-    "Voyante": 1,
-    "Sorcière": 1,
-    "Chasseur": 1,
-    "Cupidon": 1,
-    "Voleur": 1,
+    SimpleVillager(): 2,
+    Werewolf(): 3,
+    Seer(): 1,
+    Witch(): 1,
+    Hunter(): 1,
+    Cupid(): 1,
+    Thief(): 1,
 }
 
 # Number of players
