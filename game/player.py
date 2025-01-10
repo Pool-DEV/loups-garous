@@ -1,10 +1,10 @@
 class Player:
-    def __init__(self, player_id, name):
+    def __init__(self, socket, name):
         """
         Represents a player in the game.
         """
 
-        self.player_id = player_id
+        self.socket = socket
         self.name = name
         self.role = None
         self.alive = True

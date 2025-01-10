@@ -21,15 +21,10 @@ An adaptation of the famous party game "Les Loups-garous de Thiercelieux" as a m
    ```bash
    cd loups-garous
    ```
-3. Run the game server:
+3. Run the game:
 
    ```bash
-   python3 network/server.py
-   ```
-4. Run the game client:
-
-   ```bash
-   python3 network/client.py
+   python3 network/main.py
    ```
 
 ## 🎲 **How to play**

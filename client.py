@@ -13,16 +13,12 @@ port = 7777
 try:
     s.connect((host, port))
 
-    name = ""
-    for arg in sys.argv[1:]:
-        name += arg + " "
-    s.send(f"/name {name}".encode())
-    data = s.recv(1024)
-    print(data.decode())
+    s.send(f"/name {sys.argv[1]}".encode())
 
-    while True:
-        message = input()
-        s.send(message.encode())
+    line = sys.stdin.readline().strip()
+
+    while line:
+        s.send(line.encode())
         data = s.recv(1024)
         print(data.decode())
 
