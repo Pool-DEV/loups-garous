@@ -13,7 +13,6 @@ port = 7777
 try:
     s.connect((host, port))
 
-    # Envoyer le nom du client
     name = ""
     for arg in sys.argv[1:]:
         name += arg + " "
@@ -21,7 +20,6 @@ try:
     data = s.recv(1024)
     print(data.decode())
 
-    # Envoyer des données
     while True:
         message = input()
         s.send(message.encode())
