@@ -3,11 +3,9 @@ import curses
 from curses import wrapper
 import argparse
 
-import tchat_gui
-import tchat_server
-import tchat_client
-import tchat_message
-
+import tchat
+import client
+import server
 
 class ArgumentParser(argparse.ArgumentParser):    
     def _get_action_from_name(self, name):
@@ -54,7 +52,7 @@ class Main():
 
 
     def run_gui(self, stdscr):
-        self.gui = tchat_gui.Gui(stdscr)
+        self.gui = tchat.Gui(stdscr)
         self.gui.win_draw_global()
         self.running_gui = True
 
@@ -80,10 +78,10 @@ class Main():
                     pass
                 else:
                     if self.running_server:
-                        message_object = tchat_message.general_message_encode("[SERVER]", " ", user_message, tchat_message.TEXT_COLOR_BLUE)
+                        message_object = tchat.general_message_encode("[SERVER]", " ", user_message, tchat.TEXT_COLOR_BLUE)
                         self.server.message_broadcast(message_object)
                     elif self.running_client:
-                        message_object = tchat_message.general_message_encode("_", "_", user_message, tchat_message.TEXT_COLOR_DEFAULT)
+                        message_object = tchat.general_message_encode("_", "_", user_message, tchat.TEXT_COLOR_DEFAULT)
                         self.client.send_message(message_object)
                     else:
                         self.gui.new_message(self.username, self.seperator, user_message)
@@ -171,8 +169,8 @@ class Main():
         except Exception as e:
             self.gui.console_message_fail(e)
             return
-        if tchat_server.is_port_available(args.port):
-            self.server = tchat_server.Server(self.gui, args.ip, args.port, args.name)
+        if server.is_port_available(args.port):
+            self.server = server.Server(self.gui, args.ip, args.port, args.name)
             self.process_server = threading.Thread(target=self.server.run_server)
             self.running_server = True
             self.process_server.start()
@@ -187,11 +185,11 @@ class Main():
             self.gui.console_message_fail(f"{e}")
             return
 
-        self.client = tchat_client.Client(self.gui, args.ip, args.port)
+        self.client = client.Client(self.gui, args.ip, args.port)
         try:
             self.client.start_connection()
         except:
-            self.gui.new_message(tchat_message.CONSOLE_FAIL, tchat_message.CONSOLE_SEPERATOR, f"Unable to connect to server with {args.ip}:{args.port}", tchat_message.TEXT_COLOR_RED)
+            self.gui.new_message(tchat.CONSOLE_FAIL, tchat.CONSOLE_SEPERATOR, f"Unable to connect to server with {args.ip}:{args.port}", tchat.TEXT_COLOR_RED)
             return
         self.process_client = threading.Thread(target=self.client.run_client)
         self.running_client = True
