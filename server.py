@@ -13,7 +13,6 @@ def get_date():
 def get_time():
     datetime.now().strftime("%H:%M")
 
-
 class ClientsInfo():
     def __init__(self, user_id, username, joined_date, joined_time):
         self.user_id = user_id
@@ -85,7 +84,6 @@ class Server():
         self.connected_sockets.append(socket)
         object = tchat.general_message_encode(tchat.CONSOLE_INFO, tchat.CONSOLE_SEPERATOR, f"{name} has joined the server...", tchat.TEXT_COLOR_YELLOW)
         self.message_broadcast(object)
-
 
     def remove_client(self, client):
         client.close()

@@ -69,7 +69,6 @@ class Gui():
         self.win_draw_chatbox()
         self.win_draw_inputfield()
 
-
     def update_window_dimensions(self):
         sidebar_height = self.screen_height - 5
         sidebar_width = self.sidebar_width - 4
@@ -93,7 +92,6 @@ class Gui():
         self.chatbox_border = curses.newwin(*chatbox_border_hwyx)
         self.chatbox = curses.newwin(*chatbox_hwyx)
 
-
     def win_draw_global(self):
         self.stdscr.erase()
 
@@ -103,7 +101,6 @@ class Gui():
                 self.update_window_dimensions()
             except:
                 curses.beep()
-
         try:
             self.stdscr.refresh()
             self.win_draw_chatbox()
@@ -112,7 +109,6 @@ class Gui():
         except:
             curses.beep()
 
-    # was very tired and lazy when i made this abomination
     def win_draw_sidebar(self, message_object=None):
         def br():
             return 20 * "~"
@@ -153,7 +149,6 @@ class Gui():
         self.sidebar_border.refresh()
         self.sidebar.refresh()
         self.inputfield.refresh()
-
 
     def win_draw_inputfield(self):
         self.inputfield.erase()
@@ -226,7 +221,6 @@ class Gui():
             self.user_input_offset += 1
         self.win_draw_inputfield()
         self.relative_cursor_string_x += 1
-
 
     def handle_backspace(self):
         if self.relative_cursor_string_x != 0:

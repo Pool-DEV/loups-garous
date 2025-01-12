@@ -12,7 +12,6 @@ CONSOLE_SEPERATOR = " "
 MESSAGE_GENERAL = 0
 MESSAGE_INFO = 1
 
-
 class InfoMessage():
     def __init__(self, server_name, max_clients, connected_clients, clients_info_dict, server_end):
         self.server_name = server_name
@@ -22,7 +21,6 @@ class InfoMessage():
         self.clients_info_dict = clients_info_dict
         self.server_end = server_end
 
-
 class GeneralMessage():
     def __init__(self, sender_name, separator, message, text_color):
         self.message_type = MESSAGE_GENERAL
@@ -31,7 +29,6 @@ class GeneralMessage():
         self.message = message
         self.text_color = text_color
         self.total_length = len(sender_name + separator + message) 
-
 
 def general_message_encode(sender_name, separator, message, text_color):
     return pickle.dumps(GeneralMessage(sender_name, separator, message, text_color))
