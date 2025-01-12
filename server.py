@@ -23,7 +23,6 @@ class ClientsInfo():
         self.joined_date = joined_date
         self.joined_time = joined_time
 
-
 class Server():
     def __init__(self, gui, ip, port, server_name, max_clients=12):
         self.gui = gui
@@ -61,13 +60,11 @@ class Server():
                 else:
                     data = connected_socket.recv(DATA_SIZE)
                     if data:
-                        # Yes, this is unintuitive
                         decoded_message = tchat.message_decode(data)
 
                         sender_name = self.sockets_names[connected_socket].username
                         update_data = tchat.general_message_encode(sender_name, ": ", decoded_message.message, decoded_message.text_color)
                         self.message_broadcast(update_data)
-
                     else:
                         self.remove_client(connected_socket)
                         self.message_broadcast(self.create_update_message(), tchat.MESSAGE_INFO)
@@ -115,6 +112,5 @@ def is_port_available(port):
             s.settimeout(1)
             s.bind((host_ip, port))
         return True
-    
     except:
         return False

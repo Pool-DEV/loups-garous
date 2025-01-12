@@ -13,6 +13,7 @@ class ArgumentParser(argparse.ArgumentParser):
         If only it were made available in the ArgumentError object. It is 
         passed as it's first arg...
         """
+        
         container = self._actions
         if name is None:
             return None
@@ -50,7 +51,6 @@ class Main():
         connect_parser.add_argument('-p', '--port', type=int, help="Port number", default=5050)
         connect_parser.add_argument('-i', '--ip', help="IP address", default="localhost")
 
-
     def run_gui(self, stdscr):
         self.gui = tchat.Gui(stdscr)
         self.gui.win_draw_global()
@@ -85,7 +85,6 @@ class Main():
                         self.client.send_message(message_object)
                     else:
                         self.gui.new_message(self.username, self.seperator, user_message)
-                
             elif user_input == curses.KEY_BACKSPACE or user_input == 127 or user_input == 8:
                 self.gui.handle_backspace()
 
@@ -130,8 +129,6 @@ class Main():
                     self.gui.win_draw_semi()
             else:
                 self.gui.console_message_fail("Unknown command...")
-
-
         except Exception as e:
             self.gui.console_message_fail(f"Error: {e}")
 

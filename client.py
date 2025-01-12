@@ -28,14 +28,12 @@ class Client():
                 try:
                     data = node.recv(DATA_SIZE)
                     if data:
-                        
                         object = tchat.message_decode(data)
 
                         if object.message_type == tchat.MESSAGE_INFO:
                             self.gui.win_draw_sidebar(data)
                         else:
                             self.gui.new_message(object.sender_name, object.separator, object.message, object.text_color)
-
                 except Exception as e:
                     pass
 

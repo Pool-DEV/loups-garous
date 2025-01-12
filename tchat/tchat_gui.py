@@ -160,7 +160,6 @@ class Gui():
             curses.beep()
         self.inputfield.addstr(0, 0, user_input_display, curses.color_pair(1))
         
-        
         self.inputfield_border.addch(1,1, ">")
         self.inputfield_border.refresh()
         self.inputfield.refresh()
