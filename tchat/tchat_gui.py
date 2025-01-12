@@ -1,7 +1,6 @@
 import curses
-import tchat_message
+from . import tchat_message
 import math
-
 
 class Gui():
     def __init__(self, stdscr):
