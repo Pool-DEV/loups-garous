@@ -1,33 +1,50 @@
 import socket
-import sys
+import select
+import tchat
 
-if len(sys.argv) < 2:
-    print("Usage: python client.py <name>")
-    sys.exit(1)
+INTERVAL = 0.4
+DATA_SIZE = 1024
+CONNECTION_TIMEOUT = 4
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+class Client():
+    def __init__(self, gui, server_ip, server_port):
+        self.gui = gui
+        self.server_ip = server_ip
+        self.server_port = server_port
 
-host = ''
-port = 7777
+        self.is_running = False
 
-try:
-    s.connect((host, port))
+    def start_connection(self):
+        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.client_socket.settimeout(CONNECTION_TIMEOUT)
+        self.client_socket.connect((self.server_ip, self.server_port))
 
-    name = ""
-    for arg in sys.argv[1:]:
-        name += arg + " "
-    s.send(f"/name {name}".encode())
-    data = s.recv(1024)
-    print(data.decode())
+    def run_client(self):
+        self.is_running = True
 
-    while True:
-        message = input()
-        s.send(message.encode())
-        data = s.recv(1024)
-        print(data.decode())
+        while self.is_running:
+            readable, _, _ = select.select([self.client_socket,], [], [], INTERVAL)
+            for node in readable:
+                try:
+                    data = node.recv(DATA_SIZE)
+                    if data:
+                        
+                        object = tchat.message_decode(data)
 
-except Exception as e:
-    print(f"Connection error: {e}")
+                        if object.message_type == tchat.MESSAGE_INFO:
+                            self.gui.win_draw_sidebar(data)
+                        else:
+                            self.gui.new_message(object.sender_name, object.separator, object.message, object.text_color)
 
-finally:
-    s.close()
+                except Exception as e:
+                    pass
+
+    def send_message(self, message_object):
+        try:
+            self.client_socket.send(message_object)
+        except:
+            self.gui.new_message(tchat.CONSOLE_FAIL, tchat.CONSOLE_SEPERATOR, "Error sending message, maybe the server is down...", tchat.TEXT_COLOR_RED)
+    def stop_client(self):
+        self.is_running = False
+        self.client_socket.close()
+        self.gui.new_message(tchat.CONSOLE_INFO, tchat.CONSOLE_SEPERATOR, "You disconnected from the server...", tchat.TEXT_COLOR_YELLOW)
